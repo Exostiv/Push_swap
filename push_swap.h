@@ -6,7 +6,7 @@
 /*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:41:38 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/01/31 13:38:38 by tnicoue          ###   ########.fr       */
+/*   Updated: 2022/02/02 15:17:06 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,17 @@ typedef struct s_stock
 	int				pos_shorter2;
 	int				size_a;
 	int				size_b;
-	int				size_all;
 	int				lastb;
+	int				bigger_chunk;
 	int				var_tabcheck;
 	int				done;
-	int				size_before;
-	int				checkaccepta;
 	int				checklast;
 	int				chunk_size;
-	int				tab[1000];
-	int				tab2[1000];
-	int				tab3[1000];
 } t_stock;
 
 t_stack	*ft_lstnew(int content);
+void	ft_biggerchunk_a(t_stack **stack_a, t_stock *stock);
+void	get_size_a(t_stack **stack_a, t_stock *stock);
 long	ft_atoi(const char *str);
 void	ft_lstadd_front(t_stack **alst, t_stack *new);
 void	getbigger5(t_stack **stack_a, t_stock *stock);
@@ -59,16 +56,25 @@ void	ft_accept_a(t_stack **stack_a, t_stock *stock);
 int		checklowercoup(t_stock *stock);
 void	ft_last(t_stack **stack_b, t_stock *stock);
 void	mvlowercoup(int indic, t_stock *stock, t_stack **stack_a);
+void	ft_mvfirst(t_stock *stock, int pos, t_stack **stack_a);
 void	ft_tri100(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
 void	mvbigger5(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
 void	ft_tri5(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
+void 	ft_tribig(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
+
 void	ft_pos_accept(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
+void 	ft_pos_accept2(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
+void 	ft_pos_accept3(t_stack **a, t_stack **b, t_stock *stock, int pos);
 void	mvlower4(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
 void	ft_crea_tab_pos(t_stack **stack_a, t_stock *stock);
 void 	direction(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
 void	getlower4_5(t_stack **stack_a, t_stock *stock);
 int		get_size(t_stack **stack, t_stock *stock);
 void	ft_lstadd_back(t_stack **alst, t_stack *n);
+void	ft_rotate_max(t_stack **a, t_stack **b, t_stock *stock, int pos, int max);
+void	ft_mvmax(t_stack **a, t_stack **b, t_stock *stock, int max);
+int		ft_bigger_b(t_stack **stack_b);
+int		ft_lower_b(t_stack **stack_b);
 void	ft_tri4(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
 void	ft_init_struct(t_stock *stack);
 void	ft_print_lst(t_stack *stack);
@@ -90,15 +96,22 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		main(int argc, char **argv);
+int		ft_check_order(t_stack *stack_a);
 void	ft_lstclear(t_stack **lst);
+void	mkchunk(t_stock *stock);
+void	ft_chunk(t_stock *stock, t_stack **stack_a);
+int		ft_checkpos(int check, t_stack **stack_a);
+int		checkcp(int i, t_stock *stock);
+void	ft_mvfirst(t_stock *stock, int pos, t_stack **stack_a);
+
 void	ft_sa(t_stack **stack);
 void	ft_sb(t_stack **stack);
 void	ft_ra(t_stack **stack);
 void	ft_rb(t_stack **stack);
 void	ft_rra(t_stack **stack);
 void	ft_rrb(t_stack **stack);
-void	ft_pa(t_stack **stack_b, t_stack **stack_a);
-void	ft_pb(t_stack **stack_a, t_stack **stack_b);
+void	ft_pa(t_stack **stack_b, t_stack **stack_a, t_stock *stock);
+void	ft_pb(t_stack **stack_a, t_stack **stack_b, t_stock *stock);
 void	ft_rrr(t_stack **stack_a, t_stack **stack_b);
 void	ft_rr(t_stack **stack_a, t_stack **stack_b);
 void	ft_ss(t_stack **stack_a, t_stack **stack_b);

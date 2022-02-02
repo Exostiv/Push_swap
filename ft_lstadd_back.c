@@ -6,7 +6,7 @@
 /*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:39:45 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/01/31 13:36:15 by tnicoue          ###   ########.fr       */
+/*   Updated: 2022/02/02 10:26:43 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,8 @@ void	ft_init_struct(t_stock *stack)
 	stack->size_b = 0;
 	stack->size_a = 0;
 	stack->lastb = 0;
-	stack->size_all = 0;
 	stack->var_tabcheck = 0;
 	stack->pos_bigger = 0;
 	stack->done = 0;
-	stack->checkaccepta = 0;
 	stack->checklast = 0;
 }

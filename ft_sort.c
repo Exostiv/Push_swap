@@ -74,208 +74,23 @@ int get_value(int i, t_stack *stack, int *value)
     value[i] = t_stack->content;
 }
 */
-void    direction(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
-{
-    stock->size_before =get_size(stack_a, stock);
-    if (stock->size_all <= 3)
-        choose_sort_short(stack_a, stock);
-    else
-        choose_sort_big(stack_a, stack_b, stock);
-}
-    
-int get_size(t_stack **stack, t_stock *stock)
-{
-    t_stack *tmp;
-    int     i;
-    
-    tmp = (*stack);
-    i = 0;
-    while(tmp)
-    {
-        i++;
-        tmp = tmp->next;
-    }
-    stock->size_all = i;
-    return (i);
-}
 
-void choose_sort_short(t_stack **stack_a, t_stock *stack)
-{
-    if(stack->size_all == 2)
-        ft_tri2(stack_a);
-    else if(stack->size_all == 3)
-        ft_tri3(stack_a);
-}
 
-void ft_tri2(t_stack **stack_a)
-{
-    if((*stack_a)->content > (*stack_a)->next->content)
-        ft_sa(stack_a);
-}
 
-void ft_tri3(t_stack **stack_a)
-{
-    if((*stack_a)->content < (*stack_a)->next->content 
-        && (*stack_a)->content < (*stack_a)->next->next->content
-        && (*stack_a)->next->content > (*stack_a)->next->next->content) //132
-    {
-        ft_sa(stack_a);
-        ft_ra(stack_a);
-    }
-    else if((*stack_a)->content < (*stack_a)->next->content 
-        && (*stack_a)->content > (*stack_a)->next->next->content) //231
-        ft_rra(stack_a);
-    else if ((*stack_a)->content > (*stack_a)->next->content 
-        && (*stack_a)->content > (*stack_a)->next->next->content
-        && (*stack_a)->next->content < (*stack_a)->next->next->content) //312
-        ft_ra(stack_a);
-    else if ((*stack_a)->content > (*stack_a)->next->content 
-        && (*stack_a)->next->content < (*stack_a)->next->next->content) //213
-        ft_sa(stack_a);
-    else if((*stack_a)->content > (*stack_a)->next->content 
-        && (*stack_a)->content > (*stack_a)->next->next->content
-        && (*stack_a)->next->content > (*stack_a)->next->next->content) //321
-    {
-        ft_sa(stack_a);
-        ft_rra(stack_a);
-    }
-    else if ((*stack_a)->content < (*stack_a)->next->content
-        && (*stack_a)->content < (*stack_a)->next->next->content
-        && (*stack_a)->next->content < (*stack_a)->next->next->content)
-        return ;                                                        //123
-}
 
-void choose_sort_big(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
-{
-    if(stock->size_all == 4)
-        ft_tri4(stack_a, stack_b, stock);
-    else if(stock->size_all == 5)
-        ft_tri5(stack_a, stack_b, stock);
-    else if(stock->size_all <= 100)
-        ft_tri100(stack_a, stack_b, stock);
-    /*else if (stock->size_all > 100 && stock->size_all <= 500)
-        ft_big_sort500(stack_a, stack_b, stock);*/
-}
 
-void getlower4_5(t_stack **stack_a, t_stock *stock)
-{
-    t_stack *tmp;
-    int i;
 
-    i = 0;
-    tmp = (*stack_a);
-    while (tmp)
-    {
-        if(stock->shorter > tmp->content)
-        {
-           stock->shorter = tmp->content;
-           stock->pos_shorter = i;
-        }
-        tmp = tmp->next;
-        i++;
-    }
-}
 
-void mvlower4(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
-{
-    int i;
 
-    i = stock->pos_shorter;
-    if (i == 3)
-    {
-        ft_rra(stack_a);
-        ft_pb(stack_a, stack_b);
-    }
-    else
-    {
-        while (i != 0)
-        {
-            ft_ra(stack_a);
-            i--;
-        }
-        ft_pb(stack_a, stack_b);
-    }
-}
- 
-void    ft_tri4(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
-{
-    getlower4_5(stack_a, stock);
-    mvlower4(stack_a, stack_b, stock);
-    ft_tri3(stack_a);
-    ft_pa(stack_a, stack_b);
-}
 
-void    ft_tri5(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
-{
-    getbigger5(stack_a, stock);
-    mvbigger5(stack_a, stack_b, stock);
-    getlower4_5(stack_a, stock);
-    mvlower4(stack_a, stack_b, stock);
-    ft_tri3(stack_a);
-    ft_pa(stack_a, stack_b);
-    ft_pa(stack_a, stack_b);
-    ft_ra(stack_a);
-}
 
-void    mvbigger5(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
-{
-    int count;
 
-    count = 5 - stock->pos_bigger;
-    if (stock->pos_bigger > 2)
-    {
-        while(count > 0)
-        {
-            ft_rra(stack_a);
-            count--;
-        }
-        ft_pb(stack_a, stack_b);
-    }
-    else
-    {
-        while (stock->pos_bigger)
-        {
-            ft_ra(stack_a);
-            stock->pos_bigger--;
-        }
-        ft_pb(stack_a, stack_b);
-    }
-}
 
-void    getbigger5(t_stack **stack_a, t_stock *stock)
-{
-    int i;
 
-    i = 0;
-    t_stack *tmp;
-    tmp = (*stack_a);
-    while (tmp)
-    {
-        if(stock->bigger < tmp->content)
-        {
-            stock->bigger = tmp->content;
-            stock->pos_bigger = i;
-        }
-        tmp = tmp->next;
-        i++;
-    }
-}
 
-void get_size_a(t_stack **stack_a, t_stock *stock)
-{
-    int i;
-    t_stack *tmp;
 
-    i = 1;
-    tmp = (*stack_a);
-    while (tmp)
-    {
-        tmp = tmp->next;
-        i++;
-    }
-    stock->size_a = i;
-}
 
+/*
 void    ft_tri100(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
 {
     int indic;
@@ -541,12 +356,9 @@ void ft_pos_accept(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
 	if (*stack_b == NULL || stock->size_b == 1 
 		|| (value > (*stack_b)->content && value > stock->lastb))
 	{
-        printf("oui\n");
 		ft_pb(stack_a, stack_b);
 		return ;
 	}
-	printf("stack_a = %d\n", (*stack_a)->content);
-	ft_print_lst(*stack_b);
 	if (value < (*stack_b)->content && value < stock->lastb)
 	{
 		ft_pb(stack_a, stack_b);
@@ -560,7 +372,6 @@ void ft_pos_accept(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
 		tmp = tmp->next;
 		i++;
 	}
-	printf("pos 1\n");
 	if(pos_accept > (stock->size_b / 2))
 	{
 		while (pos_accept < stock->size_b)
@@ -589,7 +400,7 @@ void ft_pos_accept(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
 
 
 
-/*
+
 ft_tri100test()
 {
     get_size_a();
@@ -613,7 +424,7 @@ mkchunk(t_stock *stock)
     }
 }
 
-ft_chunk(t_stock *stock, t_stack **stack_a)
+void ft_chunk(t_stock *stock, t_stack **stack_a)
 {
     int i;
     int check;
@@ -621,7 +432,7 @@ ft_chunk(t_stock *stock, t_stack **stack_a)
     int verif;
     int pos;
 
-    verif = 150;    
+    verif = 150;
     while(stock->chunk_size > i)
     {
         i = 0;
@@ -684,3 +495,4 @@ int checkcp(int i, t_stock *stock)
     return(i);
 }
 */
+// Limit fin de chunk pour comparer au premier passage

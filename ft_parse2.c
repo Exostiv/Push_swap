@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:08:18 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/01/17 18:30:55 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/02/02 10:36:34 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,24 @@ int	ft_verifint(t_stack *stack_a)
 		tmp = tmp->next;
 	}
 	return (1);
+}
+
+int ft_check_order(t_stack *stack_a)
+{
+	t_stack *tmp;
+	int i;
+
+	i = 0;
+	tmp = stack_a;
+	while(tmp)
+	{
+		if(tmp->next && tmp->content > tmp->next->content)
+			i = 1;
+		tmp = tmp->next;
+	}
+	if (i == 0)
+	{
+		write(1, "La liste est deja triee !\n", 25);
+	}
+	return(i);
 }

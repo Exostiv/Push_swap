@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:41:33 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/01/25 17:37:14 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/02/02 15:25:05 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,17 @@ int	main(int argc, char **argv)
 		return(0);
 	if (ft_verifclean(stack_a) == 0)
 		return (0);
-	//get_size(&stack_a, &stock);
-	direction(&stack_a, &stack_b, &stock);
+	if (ft_check_order(stack_a) == 0)
+		return(0);
+	//direction(&stack_a, &stack_b, &stock);
+	
+	ft_pos_accept(&stack_a, &stack_b, &stock);
+	ft_pos_accept(&stack_a, &stack_b, &stock);
+	ft_pos_accept(&stack_a, &stack_b, &stock);
+	ft_pos_accept(&stack_a, &stack_b, &stock);
+	ft_pos_accept(&stack_a, &stack_b, &stock);
+	ft_pos_accept(&stack_a, &stack_b, &stock);
+	
 	ft_print_lst(stack_a);
 	ft_print_lst(stack_b);
 }

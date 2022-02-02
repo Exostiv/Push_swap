@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:31 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/01/24 18:24:46 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/02/02 08:53:13 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ void	ft_ss(t_stack **stack_a, t_stack **stack_b)
 	write(1, "ss\n", 3);
 }
 
-void	ft_pa(t_stack **stack_a, t_stack **stack_b)
+void	ft_pa(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
 {
 	t_stack	*ptr_a;
 	t_stack	*ptr_b;
 
+	stock->size_a++;
+	stock->size_b--;
 	ptr_a = *stack_b;
 	ptr_b = *stack_b;
 	ptr_a = ptr_a->next;
@@ -80,11 +82,13 @@ void	ft_pa(t_stack **stack_a, t_stack **stack_b)
 	write(1, "pa\n", 3);
 }
 
-void	ft_pb(t_stack **stack_a, t_stack **stack_b)
+void	ft_pb(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
 {
 	t_stack	*ptr_a;
 	t_stack	*ptr_b;
 
+	stock->size_a--;
+	stock->size_b++;
 	ptr_a = *stack_a;
 	ptr_b = *stack_a;
 	ptr_a = ptr_a->next;
