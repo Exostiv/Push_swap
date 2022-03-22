@@ -6,7 +6,7 @@
 /*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:40:42 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/02/02 10:02:55 by tnicoue          ###   ########.fr       */
+/*   Updated: 2022/03/01 10:34:59 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	ft_print_lst(t_stack *stack)
 {
 	t_stack	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	tmp = stack;
 	while (tmp)
 	{
-		printf("tmp->content [%d] = %d, \n", i, tmp->content);
+		printf("tmp->content [%d] = %d \n", i, tmp->content);
 		tmp = tmp->next;
 		i++;
 	}

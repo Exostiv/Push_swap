@@ -6,13 +6,11 @@
 /*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 11:44:31 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/02/02 08:53:13 by tnicoue          ###   ########.fr       */
+/*   Updated: 2022/02/14 15:24:13 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// sa && sb
 
 void	ft_sa(t_stack **stack)
 {
@@ -89,13 +87,13 @@ void	ft_pb(t_stack **stack_a, t_stack **stack_b, t_stock *stock)
 
 	stock->size_a--;
 	stock->size_b++;
-	ptr_a = *stack_a;
+	ptr_a = (*stack_a)->next;
 	ptr_b = *stack_a;
-	ptr_a = ptr_a->next;
 	*stack_a = ptr_a;
 	ptr_b->next = NULL;
-	if (*stack_b)
+	if (stack_b == NULL)
+		stack_b = &ptr_b;
+	else
 		ft_lstadd_front(stack_b, ptr_b);
-	*stack_b = ptr_b;
 	write(1, "pb\n", 3);
 }

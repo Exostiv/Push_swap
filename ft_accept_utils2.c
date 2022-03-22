@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_accept_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 11:41:17 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/02/07 11:15:45 by tnicoue          ###   ########.fr       */
+/*   Created: 2022/03/01 16:30:25 by tnicoue           #+#    #+#             */
+/*   Updated: 2022/03/03 10:44:54 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_m(int a, void (*pf)(t_stack **s), t_stack **st)
 {
-	char	*a;
-	size_t	i;
-
-	i = -1;
-	if (!s)
-		return (0);
-	if (len > ft_strlen(s))
-		len = ft_strlen(s);
-	if (ft_strlen(s) < start)
-	{	
-		a = (char *)malloc(sizeof(*s) * 1);
-		if (!a)
-			return (NULL);
-		a[0] = '\0';
-		return (a);
+	while (a)
+	{
+		pf(st);
+		a--;
 	}
-	a = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!a)
-		return (NULL);
-	while (++i < len)
-		a[i] = s[i + start];
-	a[i] = '\0';
-	return (a);
+}
+
+void	ft_checkb(t_stack **stack_b, t_stock *stock)
+{
+	if (stack_b)
+	{
+		if (stock->size_b > 2)
+			stock->lastb = ft_lastb(stack_b);
+		stock->biggerb = ft_bigger_b(stack_b);
+		stock->lowerb = ft_lower_b(stack_b);
+	}
 }

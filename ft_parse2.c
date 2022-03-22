@@ -6,7 +6,7 @@
 /*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:08:18 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/02/02 10:36:34 by tnicoue          ###   ########.fr       */
+/*   Updated: 2022/03/01 10:35:09 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,18 @@ int	ft_verifint(t_stack *stack_a)
 	return (1);
 }
 
-int ft_check_order(t_stack *stack_a)
+int	ft_check_order(t_stack *stack_a)
 {
-	t_stack *tmp;
-	int i;
+	t_stack	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = stack_a;
-	while(tmp)
+	while (tmp)
 	{
-		if(tmp->next && tmp->content > tmp->next->content)
+		if (tmp->next && tmp->content > tmp->next->content)
 			i = 1;
 		tmp = tmp->next;
 	}
-	if (i == 0)
-	{
-		write(1, "La liste est deja triee !\n", 25);
-	}
-	return(i);
+	return (i);
 }

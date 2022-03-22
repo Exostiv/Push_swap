@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevyn <kevyn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:31:04 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/01/17 21:07:03 by kevyn            ###   ########.fr       */
+/*   Updated: 2022/03/07 09:22:24 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int	ft_chkdigitol(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	if (str[i] == '-')
+		i++;
+	while (str[i] && ((str[i] >= '0' && str[i] <= '9') || str[i] == 32))
 		i++;
 	if (str[i] != '\0')
 		return (0);

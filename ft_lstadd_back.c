@@ -6,7 +6,7 @@
 /*   By: tnicoue <tnicoue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:39:45 by tnicoue           #+#    #+#             */
-/*   Updated: 2022/02/02 10:26:43 by tnicoue          ###   ########.fr       */
+/*   Updated: 2022/03/03 10:27:10 by tnicoue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_lstadd_back(t_stack **alst, t_stack *new)
 {
 	t_stack	*last;
-	t_stack *tmp;
-	
+	t_stack	*tmp;
+
 	tmp = *alst;
 	if (alst)
 	{
@@ -32,7 +32,7 @@ void	ft_lstadd_back(t_stack **alst, t_stack *new)
 	}
 }
 
-void	ft_init_struct(t_stock *stack)
+void	ft_init_struct(t_stack **stack_a, t_stock *stack)
 {
 	stack->chunk_size = 0;
 	stack->bigger = INT_MIN;
@@ -47,4 +47,9 @@ void	ft_init_struct(t_stock *stack)
 	stack->pos_bigger = 0;
 	stack->done = 0;
 	stack->checklast = 0;
+	stack->pos = 0;
+	stack->pos2 = INT_MIN;
+	stack->oldbig = INT_MIN;
+	stack->done = 0;
+	get_size_a(stack_a, stack);
 }
